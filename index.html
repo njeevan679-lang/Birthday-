@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Premium Birthday Invitation</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0}
+body{min-height:100vh;background:radial-gradient(circle at top,#3b1d54,#160c24 60%,#090510);
+font-family:Georgia,serif;color:#fff;display:flex;justify-content:center;align-items:center;padding:22px;overflow-x:hidden}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:10}
+.card{width:min(94vw,460px);position:relative;overflow:hidden;border:1px solid rgba(255,215,130,.5);
+border-radius:30px;padding:25px 22px 28px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));
+backdrop-filter:blur(14px);box-shadow:0 25px 80px rgba(0,0,0,.5),inset 0 0 35px rgba(255,215,130,.05);
+animation:enter 1s ease}
+.card:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:#d99bff;
+filter:blur(80px);opacity:.16;left:-90px;top:-80px}.card:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+background:#ffd36e;filter:blur(80px);opacity:.12;right:-70px;bottom:-60px}
+.kicker{letter-spacing:5px;text-transform:uppercase;font:11px Arial;color:#f8d994}
+h1{font-size:25px;margin:12px 0 2px}.name{font-size:40px;color:#ffd98a;font-weight:bold;margin:3px 0}
+.age{font:14px Arial;color:#eadcf2}.photo-wrap{margin:20px auto 15px;width:155px;height:155px;border-radius:50%;padding:5px;
+background:linear-gradient(135deg,#ffe6a2,#c989ff,#ffe6a2);box-shadow:0 0 35px rgba(255,210,120,.22)}
+.photo{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#271532;display:block}
+.upload{font:11px Arial;color:#cdbbd6}.upload input{display:none}.upload label{cursor:pointer;text-decoration:underline;color:#f7d58d}
+.quote{font-size:15px;line-height:1.65;color:#eadff0;margin:17px 8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.box{padding:10px 4px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);font-family:Arial}
+.box b{display:block;color:#ffd98a;font-size:11px;margin-bottom:5px}.box span{font-size:13px}
+.count{display:flex;justify-content:center;gap:8px;margin:15px 0 19px}.time{min-width:58px;padding:9px 4px;border-radius:12px;background:#fff;color:#35183f}
+.time strong{display:block;font:700 20px Arial;color:#9b4b92}.time small{font:9px Arial;color:#777}
+.actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.btn{border:0;border-radius:25px;padding:11px 17px;text-decoration:none;cursor:pointer;font:12px Arial;font-weight:bold}
+.gold{background:linear-gradient(135deg,#ffe49b,#c98a38);color:#27132e}.dark{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.music{margin-top:13px;font:11px Arial;color:#cdbbd6}.music input{display:none}.music label{cursor:pointer;color:#ffd98a}
+.footer{margin-top:20px;font:10px Arial;color:#a99aae;letter-spacing:1px}
+@keyframes enter{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+@media(max-width:380px){.name{font-size:38px}.photo-wrap{width:135px;height:135px}.time{min-width:52px}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<div class="card">
+<div class="kicker">A Special Celebration</div>
+<h1>You're Invited To</h1>
+
+<!-- ✏️ EDIT THESE DETAILS -->
+<div class="name">SAMANVI.S</div>
+<div class="age">Birthday Celebration • Turning <b>4</b> 🎂</div>
+
+<div class="photo-wrap">
+<img id="photo" class="photo" alt="Birthday photo"
+src="./WhatsApp Image 2026-09-23 at 2.39.27 PM.jpeg"><!--src=C:\Users\JEEVAN K N\Desktop\web_technologies\birthday\premium_birthday_invitation-1.htmlC:\Users\JEEVAN K N\Desktop\web_technologies\birthday\premium_birthday_invitation-1.html -->
+</div>
+
+<!-- <div class="upload">📷 <label for="photoInput">Choose birthday photo</label>
+<input id="photoInput" type="file" accept="image/*"></div> -->
+
+<div class="quote">“Life is a beautiful journey, and birthdays are the perfect moments to celebrate it.”</div>
+
+<div class="grid">
+<div class="box"><b>DATE</b><span id="dateText">07 Oct 2026</span></div>
+<div class="box"><b>TIME</b><span id="timeText">6:00 PM</span></div>
+<div class="box"><b>VENUE</b><span id="venueText">Bengaluru,<br>&nbsp;Home</span></div>
+</div>
+
+<!-- Set the target date/time here: </YYYY-MM-DDT20>:MM:SS -->
+<div class="count">
+<div class="time"><strong id="days">00</strong><small>DAYS</small></div>
+<div class="time"><strong id="hours">00</strong><small>HOURS</small></div>
+<div class="time"><strong id="mins">00</strong><small>MIN</small></div>
+<div class="time"><strong id="secs">00</strong><small>SEC</small></div>
+</div>
+
+<div class="actions">
+<button class="btn gold" onclick="launchConfetti()">🎉 Celebrate</button>
+<a class="btn dark" href="https://maps.app.goo.gl/XrYYZGbo892SsGsaA" target="_blank">📍 Get Directions</a>
+</div>
+
+<!--<div class="music">🎵<label for="musicInput">Choose your birthday music</label>
+<input id="musicInput" type="file" accept="audio/*"></div>
+<audio id="audio/mp3" src="./audio1.mp3" ></audio> -->
+
+<div class="footer">WITH LOVE • SEE YOU THERE ❤️</div>
+</div>
+
+<script>
+// ✏️ CHANGE THIS COUNTDOWN DATE/TIME
+const target = new Date("2026-10-07T12:00:00").getTime();
+
+function updateCountdown(){
+  let diff=Math.max(0,target-Date.now());
+  const d=Math.floor(diff/86400000); diff%=86400000;
+  const h=Math.floor(diff/3600000); diff%=3600000;
+  const m=Math.floor(diff/60000); const s=Math.floor((diff%60000)/1000);
+  document.getElementById("days").textContent=String(d).padStart(2,"0");
+  document.getElementById("hours").textContent=String(h).padStart(2,"0");
+  document.getElementById("mins").textContent=String(m).padStart(2,"0");
+  document.getElementById("secs").textContent=String(s).padStart(2,"0");
+}
+setInterval(updateCountdown,1000);updateCountdown();
+
+document.getElementById("photoInput").addEventListener("change",e=>{
+ const f=e.target.files[0]; if(f) document.getElementById("photo").src=URL.createObjectURL(f);
+});
+document.getElementById("musicInput").addEventListener("change",e=>{
+ const f=e.target.files[0]; if(f){
+   const a=document.getElementById("audio"); a.src=URL.createObjectURL(f);
+   a.play().catch(()=>alert("Tap the page once, then choose the music again."));
+ }
+});
+
+const canvas=document.getElementById("confetti"),ctx=canvas.getContext("2d");let pieces=[];
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight}addEventListener("resize",resize);resize();
+function launchConfetti(){
+ pieces=Array.from({length:180},()=>({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*13,vy:Math.random()*-12-3,
+ r:Math.random()*6+3,rot:Math.random()*6,vr:(Math.random()-.5)*.3,life:150+Math.random()*70}));
+ requestAnimationFrame(draw);
+}
+function draw(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.25;p.rot+=p.vr;p.life--;
+ ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=`hsl(${Math.random()*360},85%,65%)`;ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.7);ctx.restore()});
+ pieces=pieces.filter(p=>p.life>0&&p.y<canvas.height+30);if(pieces.length)requestAnimationFrame(draw);
+}
+</script>
+</body>
+</html>
